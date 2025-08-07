@@ -80,35 +80,35 @@
       font-weight: bold;
       font-size: 18px;
     }
+
+    .stok {
+      color: #555;
+      font-style: italic;
+    }
   </style>
 </head>
 <body>
 
   <div class="produk">
-    <h1>TOP 10 Babi Panggang Terenak</h1>
+    <h1>DIECAST RANDY</h1>
 
     <!-- Slideshow -->
     <div class="slideshow-container">
-      <div class="mySlides"><img src="https://down-id.img.susercontent.com/file/id-11134207-7r98r-lphhbpo7w6mwfe" alt="Mobil 1"></div>
-      <div class="mySlides"><img src="https://down-id.img.susercontent.com/file/id-11134207-7rasg-m4sdwrypdsila0" alt="mobil 2"></div>
-      <div class="mySlides"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQAc81clzIxY_PRVRkE4YRv6XmoTt_hnoNMw&s" alt="Mobil 3"></div>
-         <div class="mySlides"><img src="https://images-cdn.ubuy.com.tr/65e8a527ab176c0d5558ac9d-mini-gt-1-64-room-sports-car-kaido-house.jpg" alt="Mobil 4"></div>
+      <div class="mySlides"><img src="https://down-id.img.susercontent.com/file/id-11134207-7r98r-lphhbpo7w6mwfe" alt="Mobil 1"><p><strong>MAZDA MIATA</strong></p></div>
+      <div class="mySlides"><img src="https://down-id.img.susercontent.com/file/id-11134207-7rasg-m4sdwrypdsila0" alt="Mobil 2"><p><strong>BMW M3</strong></p></div>
+      <div class="mySlides"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQAc81clzIxY_PRVRkE4YRv6XmoTt_hnoNMw&s" alt="Mobil 3"><p><strong>MERCEDEZ BENZ</strong></p></div>
+      <div class="mySlides"><img src="https://images-cdn.ubuy.com.tr/65e8a527ab176c0d5558ac9d-mini-gt-1-64-room-sports-car-kaido-house.jpg" alt="Mobil 4"><p><strong>KAIDO NISSAN</strong></p></div>
       <button class="prev" onclick="plusSlides(-1)">❮</button>
       <button class="next" onclick="plusSlides(1)">❯</button>
     </div>
 
-    <!-- Daftar Menu -->
-    <ol style="text-align: left;">
-      <li>MAZDA MIATA</li>
-      <li>BMW M3</li>
-      <li>MERCEDEZ BENZ</li>
-      <li>KAIDO NISSSAN</li>
-    </ol>
-
     <!-- Transaksi -->
-    <p>Harga per porsi: <strong>Rp500.000</strong></p>
+    <p>Harga per unit: <strong id="hargaSatuanText">Rp500.000</strong></p>
+    <p class="stok" id="stokText">Stok tersedia: 3 unit</p>
+
     <label for="jumlah">Jumlah:</label>
     <input type="number" id="jumlah" value="1" min="1" onchange="hitungTotal()">
+    
     <div class="total" id="totalHarga">Total: Rp500.000</div>
     <button class="btn" onclick="prosesBeli()">Beli Sekarang</button>
 
@@ -116,14 +116,12 @@
     <h3>Bayar via DANA:</h3>
     <p>Scan QR berikut:</p>
     <img src="https://qris.interactive.co.id/homepage/images/assets/pay/harga/csan-qr-a.jpg" alt="QRIS DANA" width="200">
-    <!-- Ganti URL QR di atas dengan milikmu -->
 
     <br><br>
     <a href="https://link.dana.id/qris-anda" target="_blank">
       <button class="btn btn-dana">Bayar via DANA</button>
     </a>
 
-    <!-- Tambahan tombol lain -->
     <br><br>
     <a href="https://www.instagram.com/randydiecast/" target="_blank">
       <button class="btn" style="background-color: #ff6600;">Diecast Murah</button>
@@ -131,43 +129,77 @@
   </div>
 
   <script>
-    const hargaSatuan = 500000;
     let slideIndex = 1;
 
-    function hitungTotal() {
-      let jumlah = document.getElementById("jumlah").value;
-      let total = hargaSatuan * jumlah;
-      document.getElementById("totalHarga").innerText = "Total: Rp" + total.toLocaleString("id-ID");
-    }
-
-    function prosesBeli() {
-      let jumlah = document.getElementById("jumlah").value;
-      let total = hargaSatuan * jumlah;
-      alert("Kamu akan membeli " + jumlah + " porsi.\nTotal: Rp" + total.toLocaleString("id-ID"));
-    }
+    const hargaArray = [500000, 600000, 700000, 800000];
+    const stokArray = [3, 2, 1, 5];
 
     function plusSlides(n) {
       showSlides(slideIndex += n);
     }
 
     function showSlides(n) {
-      let i;
       const slides = document.getElementsByClassName("mySlides");
       if (n > slides.length) slideIndex = 1;
       if (n < 1) slideIndex = slides.length;
-      for (i = 0; i < slides.length; i++) {
+
+      for (let i = 0; i < slides.length; i++) {
         slides[i].style.display = "none";
       }
       slides[slideIndex - 1].style.display = "block";
+
+      // Update harga dan stok
+      const hargaSekarang = hargaArray[slideIndex - 1];
+      const stokSekarang = stokArray[slideIndex - 1];
+
+      document.getElementById("hargaSatuanText").innerText = "Rp" + hargaSekarang.toLocaleString("id-ID");
+      document.getElementById("stokText").innerText = "Stok tersedia: " + stokSekarang + " unit";
+
+      // Set batas max input jumlah
+      const jumlahInput = document.getElementById("jumlah");
+      jumlahInput.max = stokSekarang;
+      if (parseInt(jumlahInput.value) > stokSekarang) {
+        jumlahInput.value = stokSekarang;
+        alert("Stok hanya tersedia " + stokSekarang + " unit.");
+      }
+
+      hitungTotal();
     }
 
-    // Auto show first slide
-    window.onload = function() {
+    function hitungTotal() {
+      const jumlah = parseInt(document.getElementById("jumlah").value);
+      const hargaSekarang = hargaArray[slideIndex - 1];
+      const stokSekarang = stokArray[slideIndex - 1];
+
+      if (jumlah > stokSekarang) {
+        alert("Jumlah melebihi stok! Maksimal: " + stokSekarang);
+        document.getElementById("jumlah").value = stokSekarang;
+        return;
+      }
+
+      const total = hargaSekarang * jumlah;
+      document.getElementById("totalHarga").innerText = "Total: Rp" + total.toLocaleString("id-ID");
+    }
+
+    function prosesBeli() {
+      const jumlah = parseInt(document.getElementById("jumlah").value);
+      const stok = stokArray[slideIndex - 1];
+      const hargaSekarang = hargaArray[slideIndex - 1];
+      const total = hargaSekarang * jumlah;
+
+      if (jumlah > stok) {
+        alert("Jumlah melebihi stok. Maksimal pembelian: " + stok + " unit.");
+        return;
+      }
+
+      alert("Kamu membeli " + jumlah + " unit.\nTotal: Rp" + total.toLocaleString("id-ID"));
+    }
+
+    // Saat halaman dibuka
+    window.onload = function () {
       showSlides(slideIndex);
-      hitungTotal();
     }
   </script>
 
 </body>
 </html>
-
