@@ -1,19 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>makanan babi terenak</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>makanan babi terenak</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    .slideshow-container {
+      max-width: 400px;
+      position: relative;
+      margin: 20px auto;
+    }
+
+    .mySlides {
+      display: none;
+    }
+
+    img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      padding: 10px;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      user-select: none;
+      background-color: rgba(0, 0, 0, 0.5);
+      border: none;
+      border-radius: 5px;
+    }
+
+    .prev {
+      left: 0;
+    }
+
+    .next {
+      right: 0;
+    }
+
+    .price-button {
+      background-color: #ff6600;
+      color: white;
+      padding: 10px 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .price-button:hover {
+      background-color: #e65c00;
+    }
+  </style>
 </head>
 <body>
-    <h1>TOP 10 babi panggang terenak</h1>
-    <img src="https://www.shutterstock.com/image-photo/adorable-piglet-peeking-over-wooden-600nw-2526412985.jpg" alt="babi panggang lezat" width="400">
-    <ol><li>BABI GULING MELAYU</li>
-        <li>BABI GULING SUMATERA </li>
-        <li>BABI GULING JAWA</li>
-        <li>BABI GULING DIY</li>
-    </ol>
-   <a href="https://www.instagram.com/randydiecast/" target="_blank"> <button onchange="alert('wajib dibeli')">diecast murah </button> </a>
-    </button>
+
+  <h1>TOP 10 Babi Panggang Terenak</h1>
+
+  <!-- Slideshow gambar -->
+  <div class="slideshow-container">
+    <div class="mySlides"><img src="https://images.unsplash.com/photo-1608751601565-07efaf1f15d1" alt="Babi 1"></div>
+    <div class="mySlides"><img src="https://images.unsplash.com/photo-1601314528993-813e7c17dd6e" alt="Babi 2"></div>
+    <div class="mySlides"><img src="https://images.unsplash.com/photo-1579883758783-1c82d3f94c70" alt="Babi 3"></div>
+    <button class="prev" onclick="plusSlides(-1)">❮</button>
+    <button class="next" onclick="plusSlides(1)">❯</button>
+  </div>
+
+  <!-- Daftar -->
+  <ol>
+    <li>BABI GULING MELAYU</li>
+    <li>BABI GULING SUMATERA</li>
+    <li>BABI GULING JAWA</li>
+    <li>BABI GULING DIY</li>
+  </ol>
+
+  <!-- Tombol harga -->
+  <button class="price-button" onclick="alert('Harga: Rp500.000')">Harga: Rp500.000</button>
+
+  <!-- Tombol Instagram -->
+  <br><br>
+  <a href="https://www.instagram.com/randydiecast/" target="_blank">
+    <button class="price-button">Diecast Murah</button>
+  </a>
+
+  <script>
+    let slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+
+    function showSlides(n) {
+      let i;
+      const slides = document.getElementsByClassName("mySlides");
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      slides[slideIndex - 1].style.display = "block";
+    }
+  </script>
+
 </body>
 </html>
