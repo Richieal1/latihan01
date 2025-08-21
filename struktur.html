@@ -3,84 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
+    <title>Struktur HTML & CSS Flex</title>
     <style>
-div {
-  display: flex;
-  flex-direction: row-reverse;
-  padding: 30px;
-  margin: auto;
-}
-body { 
-font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
-margin: auto;
-padding: 20px;
-display: flex;
-flex-direction: column-reverse;
-gap: 20px;
-background-color: rgb(123, 27, 179);
-} 
-
-
-nav {
-    border: 3px solid #f1f1f1;
-    border: radius 5px;
-    background-color:blue
-    width: 300px;
-    height: inherit;
-} 
-
-header, footer {
-    padding: 20px;
-    border: 3px solid #f1f1f1;
-    border: radius 5px;
-    background-color: rgb(35, 162, 212)
-} 
-<
- article, r {
-    border: 3px solid #f1f1f1;
-    border: radius 5px;
-    background-color: rgb(207, 168, 10)
-} 
-</style> 
-
+        body { font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; margin: 20px;} 
+        .container {display: flex; flex-direction: column;}
+        .header {border: black 2px solid;
+        border-radius: 10px; background-color: #ffe0e0;
+    padding: 20px; text-align: center; margin-bottom: 10px;}
+    .navigation {background-color: aquamarine;
+    padding: 15px; width: 200px;}
+    .article {display:flex ; flex-direction: column; gap: 10px;
+    flex-grow: 1;background-color: brown;}
+    .article{background-color: cornflowerblue; padding: 15px;}
+    .footer {background-color:khaki ;
+    padding: 15px;text-align: center;}
+    .navigation ul{list-style: none;padding: 0;margin: 0;}
+    .navigation li{margin-bottom: 5px;}
+    </style>
 </head>
-
 <body>
-    <header>
-        <h1>Header</h1>
-    </header>
-
-    <div class="container">
-        <nav>
-            <h2>Navigation</h2>
+    <div class="container"><header class="Header">Struktur HTML & CSS Flex</header>
+    <div class="main-content">
+        <nav class="navigation">
             <ul>
-                <li>Link 1</li>
-                <li>Link 2</li>
-                <li>Link 3</li>
-            </ul>
+            <li>LINK 1</li>
+            <li>LINK 2</li>
+            <li>LINK 3</li>
+        </ul>
         </nav>
-
-        <main class="articles">
-            <article>
-                <h2>Article 1</h2>
-                <p>Konten artikel pertama...</p>
-            </article>
-            <article>
-                <h2>Article 2</h2>
-                <p>Konten artikel kedua...</p>
-            </article>
-            <article>
-                <h2>Article 3</h2>
-                <p>Konten artikel ketiga...</p>
-            </article>
-        </main>
+    <div class="article">
+        <article class="article">
+        <h3>article 1</h3>
+        <p>konten article</p>
+    </article>
+        <article class="article">
+        <h3>article 2</h3>
+        <p>konten article</p>
+    </article>
+        <article class="article">
+        <h3>article 3</h3>
+        <p>konten article</p>
+    </article>
+</div>
     </div>
-
-    <footer>
-        <p>Footer</p>
-    </footer>
+    <footer class="footer">Footer</footer>
 </body>
-
 </html>
