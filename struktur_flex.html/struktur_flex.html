@@ -5,10 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Struktur HTML & CSS Flex</title>
     <style>
-        body { font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; margin: 20px;} .container
+        body { font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; margin: 20px;} 
+        .container {display: flex; flex-direction: column;}
+        .header {border: black 2px solid;
+        border-radius: 10px; background-color: #ffe0e0;
+    padding: 20px; text-align: center; margin-bottom: 10px;}
+    .navigation {background-color: aquamarine;
+    padding: 15px; width: 200px;}
+    .article {display:flex ; flex-direction: column; gap: 10px;
+    flex-grow: 1;background-color: brown;}
+    .article{background-color: cornflowerblue; padding: 15px;}
+    .footer {background-color:khaki ;
+    padding: 15px;text-align: center;}
+    .navigation ul{list-style: none;padding: 0;margin: 0;}
+    .navigation li{margin-bottom: 5px;}
     </style>
 </head>
 <body>
-    
+    <div class="container"><header class="Header">Struktur HTML & CSS Flex</header>
+    <div class="main-content">
+        <nav class="navigation">
+            <ul>
+            <li>LINK 1</li>
+            <li>LINK 2</li>
+            <li>LINK 3</li>
+        </ul>
+        </nav>
+    <div class="article">
+        <article class="article">
+        <h3>article 1</h3>
+        <p>konten article</p>
+    </article>
+        <article class="article">
+        <h3>article 2</h3>
+        <p>konten article</p>
+    </article>
+        <article class="article">
+        <h3>article 3</h3>
+        <p>konten article</p>
+    </article>
+</div>
+    </div>
+    <footer class="footer">Footer</footer>
 </body>
 </html>
