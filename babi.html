@@ -1,98 +1,119 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Struktur HTML & CSS Flex</title>
-    <style>
-      body {
-        font-family: sans-serif;
-        margin: 20px;
-      }
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hello World Cards</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0f1115;         /* page background */
+      --panel: #1c1f26;      /* card background */
+      --text: #e6e7eb;       /* body text */
+      --outline: #353a44;    /* card outline */
+      --glow: #e11d48;       /* red glow */
+      --radius: 18px;
+      --space: 22px;
+    }
 
-      .container {
-        display: flex;
-        flex-direction: column; /* Susun item secara vertikal secara default */
-      }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body{
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(1000px 600px at 50% -200px, #20232b 0%, var(--bg) 50%, #0b0d11 100%);
+      color: var(--text);
+      line-height: 1.65;
+    }
 
-      .header {
-        border: black 2px solid;
-        border-radius: 10px;
-        background-color: #ffe0e0;
-        padding: 20px;
-        text-align: center;
-        margin-bottom: 10px;
-      }
+    .wrap{
+      max-width: 1240px;
+      margin: 32px auto;
+      padding: 0 18px 48px;
+    }
 
-      .main-content {
-        display: flex;
-        gap: 10px; /* Jarak antar item flex */
-        margin-bottom: 10px;
-      }
+    .grid{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 28px;
+    }
 
-      .navigation {
-        background-color: #e0ffe0;
-        padding: 15px;
-        width: 200px;
-      }
+    /* HP (kurang dari 600px) jadi 1 kolom */
+    @media (max-width: 600px){
+      .grid{ grid-template-columns: 1fr; }
+    }
 
-      .articles {
-        display: flex;
-        flex-direction: column; /* Susun artikel secara vertikal */
-        gap: 10px;
-        flex-grow: 1; /* Membuat area artikel mengisi ruang yang tersedia */
-        background-color: #000000;
-      }
+    .card{
+      position: relative;
+      background: var(--panel);
+      border: 1px solid var(--outline);
+      border-radius: var(--radius);
+      padding: calc(var(--space) + 6px) calc(var(--space) + 8px);
+      box-shadow:
+        0 1px 0 rgba(255,255,255,0.04) inset,
+        0 0 0 1px rgba(255,255,255,0.02) inset,
+        0 12px 22px rgba(0,0,0,0.55);
+      overflow: hidden;
+    }
 
-      .article {
-        background-color: #200be6;
-        padding: 15px;
-      }
+    /* soft red neon glow */
+    .card::after{
+      content: "";
+      position: absolute;
+      left: 8px; right: 8px; bottom: -18px; height: 46px;
+      background: radial-gradient(60% 100% at 50% 0%, var(--glow), transparent 70%);
+      filter: blur(14px);
+      opacity: 0.8;
+      pointer-events: none;
+    }
 
-      .footer {
-        background-color: #ffe0e0;
-        padding: 15px;
-        text-align: center;
-      }
+    h2{
+      margin: 0 0 14px;
+      font-size: clamp(28px, 4vw, 48px);
+      line-height: 1.1;
+      font-weight: 800;
+      letter-spacing: 0.2px;
+    }
+    p{ margin: 0 0 10px; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="grid">
+      <article class="card">
+        <h2>Hello World</h2>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem cumque recusandae excepturi deleniti,
+          necessitatibus repellat ab at dicta quia debitis, illo libero, vero magni suscipit veritatis. Laboriosam illum facere earum!
+        </p>
+      </article>
 
-      .navigation ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
+      <article class="card">
+        <h2>Hello World</h2>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem cumque recusandae excepturi deleniti,
+          necessitatibus repellat ab at dicta quia debitis, illo libero, vero magni suscipit veritatis. Laboriosam illum facere earum!
+        </p>
+      </article>
 
-      .navigation li {
-        margin-bottom: 5px;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <header class="header">Struktur HTML & CSS Flex</header>
-      <div class="main-content">
-        <nav class="navigation">
-          <ul>
-            <li>Link 1</li>
-            <li>Link 2</li>
-            <li>Link 3</li>
-          </ul>
-        </nav>
-        <div class="articles">
-          <article class="article">
-            <h3>Article 1</h3>
-            <p>Konten artikel pertama...</p>
-          </article>
-          <article class="article">
-            <h3>Article 2</h3>
-            <p>Konten artikel kedua...</p>
-          </article>
-          <article class="article">
-            <h3>Article 3</h3>
-            <p>Konten artikel ketiga...</p>
-          </article>
-        </div>
-      </div>
-      <footer class="footer">Footer</footer>
-    </div>
-  </body>
+      <article class="card">
+        <h2>Hello World</h2>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem cumque recusandae excepturi deleniti,
+          necessitatibus repellat ab at dicta quia debitis, illo libero, vero magni suscipit veritatis. Laboriosam illum facere earum!
+        </p>
+      </article>
+
+      <article class="card">
+        <h2>Hello World</h2>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem cumque recusandae excepturi deleniti,
+          necessitatibus repellat ab at dicta quia debitis, illo libero, vero magni suscipit veritatis. Laboriosam illum facere earum!
+        </p>
+      </article>
+    </section>
+  </main>
+</body>
 </html>
